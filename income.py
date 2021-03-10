@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-from tkinter import Tk, Label, StringVar, Entry, IntVar, DoubleVar, END, BOTH, TOP
+from tkinter import Tk, Label, StringVar, Entry, IntVar, DoubleVar, END, BOTH, TOP, Checkbutton
 from tkinter.ttk import Button
 from tkinter import N,S,E,W
 
@@ -184,8 +184,11 @@ class UtilCalc:
         self.james_penCont = 0
         self.mark_penCont  = 0
 
-        self.james_student = 0
-        self.mark_student  = 0
+        self.james_student = IntVar()
+        self.mark_student  = IntVar()
+        
+        self.j_student_button = Checkbutton(master, variable=self.james_student) 
+        self.m_student_button = Checkbutton(master, variable=self.mark_student) 
 
             # Init tax values
         self.init_m()
@@ -261,19 +264,25 @@ class UtilCalc:
                           ]
 
         # LAYOUT
-            # Row 0
+            # Row
         rowNumber = 0
         self.quit_button.grid( row=rowNumber, column=0, sticky=W )
         self.calc_button.grid( row=rowNumber, column=4, sticky=E )
         rowNumber += 1
 
-            # Row 1
+            # Row
         self.textLabel( "Names:", rowNumber, 0, sticky=E )
         self.textLabel( "James",  rowNumber, 2 )
         self.textLabel( "Mark",   rowNumber, 4 )
         rowNumber += 1
+        
+            # Row
+        self.textLabel( "Student?", rowNumber, 0, sticky=E )
+        self.j_student_button.grid( row=rowNumber, column=2 )
+        self.m_student_button.grid( row=rowNumber, column=4 )
+        rowNumber += 1
 
-            # Row 2
+            # Row
         self.textLabel("Salary:", rowNumber, 0, sticky=E)
         self.textLabel("£", rowNumber, 1)
         self.james_salary_entry.grid( row=rowNumber, column=2 )
@@ -281,6 +290,7 @@ class UtilCalc:
         self.mark_salary_entry.grid( row=rowNumber, column=4 )
         rowNumber += 1
         
+            # Row
         self.textLabel("Pension:", rowNumber, 0, sticky=E)
         self.textLabel("%", rowNumber, 1)
         self.james_penCont_entry.grid( row=rowNumber, column=2 )
@@ -361,10 +371,8 @@ class UtilCalc:
             return False
 
     def calcIt(self):
-        print(self.james_sal)
-        print(self.james_penCont)
-        james = Person("James", self.james_sal, 0, self.james_penCont)
-        mark  = Person("Mark",  self.mark_sal,  0, self.mark_penCont)
+        james = Person("James", self.james_sal, self.james_student, self.james_penCont)
+        mark  = Person("Mark",  self.mark_sal,  self.mark_student, self.mark_penCont)
         self.setValues(james, mark)
 
 #        x_vals = list(range(25,50))
