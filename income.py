@@ -371,8 +371,8 @@ class UtilCalc:
             return False
 
     def calcIt(self):
-        james = Person("James", self.james_sal, self.james_student, self.james_penCont)
-        mark  = Person("Mark",  self.mark_sal,  self.mark_student, self.mark_penCont)
+        james = Person("James", self.james_sal, self.james_student.get(), self.james_penCont)
+        mark  = Person("Mark",  self.mark_sal,  self.mark_student.get(), self.mark_penCont)
         self.setValues(james, mark)
 
 #        x_vals = list(range(25,50))
