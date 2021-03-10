@@ -344,14 +344,14 @@ class UtilCalc:
     def validate(self, new_text, person, variable):
         if not new_text: # the field is being cleared
             if person == "j":
-                if salary:
+                if variable == "salary":
                     self.james_sal = 0
-                else:
+                elif variable == "pension":
                     self.james_penCont = 0
             else:
-                if salary:
+                if variable == "salary":
                     self.mark_sal = 0
-                else:
+                elif variable == "pension":
                     self.mark_penCont = 0
             return True
 
