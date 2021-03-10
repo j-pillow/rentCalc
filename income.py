@@ -422,7 +422,7 @@ class UtilCalc:
         
         self.m_pension    = mark.pension
         self.m_personal   = mark.taxDict["PA"]
-        self.m_taxable    = mark.pay - james.taxDict["PA"]
+        self.m_taxable    = mark.pay - mark.taxDict["PA"]
         self.m_lbTaxable  = mark.taxDict["LB"]
         self.m_lbTax      = mark.taxAmounts["LB"]
         self.m_hbTaxable  = mark.taxDict["HB"]
