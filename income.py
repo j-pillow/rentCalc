@@ -277,7 +277,7 @@ class UtilCalc:
         rowNumber += 1
         
             # Row
-        self.textLabel( "Student?", rowNumber, 0, sticky=E )
+        self.textLabel( "Student Loan?", rowNumber, 0, sticky=E )
         self.j_student_button.grid( row=rowNumber, column=2 )
         self.m_student_button.grid( row=rowNumber, column=4 )
         rowNumber += 1
