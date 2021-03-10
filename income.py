@@ -5,8 +5,8 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-from tkinter import Tk, Label, StringVar, Entry, IntVar, DoubleVar, END, BOTH, TOP, Checkbutton
-from tkinter.ttk import Button
+from tkinter import Tk, Label, StringVar, Entry, IntVar, DoubleVar, END, BOTH, TOP, Checkbutton, HORIZONTAL
+from tkinter.ttk import Button, Separator
 from tkinter import N,S,E,W
 
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
@@ -284,17 +284,17 @@ class UtilCalc:
 
             # Row
         self.textLabel("Salary:", rowNumber, 0, sticky=E)
-        self.textLabel("£", rowNumber, 1)
+        self.textLabel("£", rowNumber, 1, sticky=E)
         self.james_salary_entry.grid( row=rowNumber, column=2 )
-        self.textLabel("£",rowNumber,3)
+        self.textLabel("£",rowNumber,3, sticky=E)
         self.mark_salary_entry.grid( row=rowNumber, column=4 )
         rowNumber += 1
         
             # Row
         self.textLabel("Pension:", rowNumber, 0, sticky=E)
-        self.textLabel("%", rowNumber, 1)
+        self.textLabel("%", rowNumber, 1, sticky=E)
         self.james_penCont_entry.grid( row=rowNumber, column=2 )
-        self.textLabel("%",rowNumber,3)
+        self.textLabel("%",rowNumber,3, sticky=E)
         self.mark_penCont_entry.grid( row=rowNumber, column=4 )
         rowNumber += 1
 
@@ -307,11 +307,13 @@ class UtilCalc:
             m_lab.grid(     row=rowNumber, column=4, sticky=W   )
             rowNumber +=1
 
+        Separator(master, orient=HORIZONTAL).grid(row=rowNumber, columnspan=5, sticky=E+W, pady=(10,10))
+        rowNumber += 1
 
             # Row N+1
-        self.textLabel("Total Monthly Income:", rowNumber, 0, sticky=E)
-        self.textLabel( "£", rowNumber, 1, sticky=E )
-        self.monthly_label.grid( row=rowNumber, column=2, sticky=W )
+        self.textLabel("Total Monthly Income:", rowNumber, 0, sticky=E, pady=(0,10))
+        self.textLabel( "£", rowNumber, 1, sticky=E, pady=(0,10) )
+        self.monthly_label.grid( row=rowNumber, column=2, sticky=W, pady=(0,10) )
         rowNumber += 1
         
         self.textLabel("50% Monthly Income:", rowNumber, 0, sticky=E)
@@ -387,9 +389,9 @@ class UtilCalc:
 #        canvas.get_tk_widget().grid( row=self.rowNumber, columnspan=5 )
 
 
-    def textLabel(self, text, row, column, sticky=None):
+    def textLabel(self, text, row, column, sticky=None, padx=(0,0), pady=(0,0)):
         thisLabel = Label(self.master, text=text)
-        thisLabel.grid( row=row, column=column, sticky=sticky )
+        thisLabel.grid( row=row, column=column, sticky=sticky, padx=padx, pady=pady )
         return thisLabel
 
     def varLabel(self, variableName):
